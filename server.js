@@ -15,23 +15,28 @@ const User= mongoose.model('user',new mongoose.Schema({
 
 
 
+User.create({
+    user:'soar',
+    age:18
+},function(err,doc){
+    if(err){
+        console.log(err)
+    }else
+    console.log(doc);
+})
 
 app.get('/',function(req,res){
     res.send('<h1>hello world</h1>')
 })
 app.get('set',function(req,res){
-    User.create({
-        user:'soar',
-        age:18
-    },function(err,doc){
-        if(err){
-            console.log(err)
-        }else
-        // console.log(doc);
-        res.json(doc)
-    })
 })
 app.get('get',function(req,res){
+
+    User.find({},function(err,doc){
+        if(!err){
+            res.json(doc)
+        }
+    })
     
 })
 app.listen(6666,function(){
