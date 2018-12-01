@@ -27,7 +27,8 @@ app.get('set',function(req,res){
         if(err){
             console.log(err)
         }else
-        console.log(doc)
+        // console.log(doc);
+        res.json(doc)
     })
 })
 app.get('get',function(req,res){
