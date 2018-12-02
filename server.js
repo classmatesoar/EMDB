@@ -105,6 +105,7 @@ app.get('/set',function(req,res){
         console.log(err)
     }else
     console.log(doc);
+    res.json({status:'ok'})
 })
 
 })
