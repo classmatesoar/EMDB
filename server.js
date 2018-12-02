@@ -2,7 +2,7 @@ const express=require('express')
 
 const app = express()
 const mongoose =require("mongoose")
-const axios =require("axios")
+//const axios =require("axios")
 const DB_URL='mongodb://127.0.0.1:27017'
 mongoose.connect(DB_URL)
 mongoose.connection.on('connected',function(){
@@ -42,12 +42,12 @@ app.get('get',function(req,res){
 })
 app.listen(6666,function(){
     console.log('express is listen 6666');
-    setTimeout(function(){
-        axios.get('http://localhost:6666/get')
-        .then(res=>{
-            console.log(res)
-        }).catch(err=>{
-            console.log(err)
-        })
-    },3000)
+//     setTimeout(function(){
+//         axios.get('http://localhost:6666/get')
+//         .then(res=>{
+//             console.log(res)
+//         }).catch(err=>{
+//             console.log(err)
+//         })
+//     },3000)
 })
