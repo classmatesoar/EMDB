@@ -10,6 +10,9 @@ const User= mongoose.model('user',new mongoose.Schema({
     age:{type:String,require:true}
 }))
 
+/* ------------------------------------------------------------------------- */
+
+
 const express = require("express");
 const path = require("path");
  
@@ -21,6 +24,8 @@ app.use(express.static(path.join(process.cwd(),"www_root")));
 const server = app.listen(6080,function(){
     console.log('server is start')
 });
+
+/* -------------------------------------------------------------------------- */
  
 app.get('/', function (req, res) {
     //发送数据
