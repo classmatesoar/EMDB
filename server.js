@@ -41,7 +41,7 @@ app.use(cookieParser());
 
 
 //监听
-const server = app.listen(6080,function(){
+const server = app.listen(80,function(){
     console.log('server is start')
 });
 
