@@ -1,14 +1,12 @@
 const mongoose =require("mongoose")
+const {m_user} = require('./config/mongooseModel/user.js')
 const DB_URL='mongodb://104.224.153.165:52954'
 mongoose.connect(DB_URL)
 mongoose.connection.on('connected',function(){
     console.log('mongo is start')
 })
 
-const User= mongoose.model('user',new mongoose.Schema({
-    user:{type:String,require:true},
-    age:{type:String,require:true}
-}))
+const User= mongoose.model('user',new mongoose.Schema(m_user))
 
 /* ------------------------------------------------------------------------- */
 
@@ -17,7 +15,14 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
-const pbcmsd = require ('./config/publicMethods');
+const {
+    setCookie,
+    getCookie,
+    bodyParams,
+    urlParmas
+} = require ('./config/publicMethods');
+const interceptor = require('./config/publicMethods/interceptor.js')
+const {responseJson,responseSend} = require('./config/publicMethods/response.js')
  
 const app = express();
 
@@ -47,16 +52,26 @@ const server = app.listen(80,function(){
 
 /* -------------------------------------------------------------------------- */
 
+const tokens=[];
 
 /*  */
- 
- 
-app.post('/login', function (req, res) {
-    console.log(req.cookies)
 
-    res.cookie('111111','1111111')
-    //发送数据
-    res.send('已连接上服务器~~');
+app.all('*',interceptor)
+ 
+ 
+app.post('/login_in', function (req, res) {
+    let name=bodyParams(req,'name');
+    if(name!=undefined){
+
+        setCookie(res,{
+            token:name+new Date().getTime()
+        })
+        //发送数据
+        responseJson(res,200)
+
+    }else{
+        responseJson(res,403)
+    }
  });
 
  app.get('/getfile',function(req,res){
@@ -82,13 +97,23 @@ app.get('/set',function(req,res){
 
 })
 app.get('/get',function(req,res){
-
     User.find({},function(err,doc){
         if(!err){
             res.json(doc)
+        }else{
+            res.send(err)
         }
     })
     
+})
+app.get('/clear',function(req,res){
+    User.remove({},function(err,doc){
+        if(!err){
+            res.json(doc)
+        }else{
+            res.send(err)
+        }
+    })
 })
  
 

@@ -7,5 +7,13 @@ const setCookie=(res,obj={})=>{
 const getCookie=(req,key='')=>{
     return req.cookies[key]
 }
+const bodyParams=(req,key='')=>{
+    return req.body[key]
+}
+const urlParmas=(req,key='')=>{
+    return req.query[key]
+}
 exports.setCookie=setCookie;
 exports.getCookie=getCookie;
+exports.bodyParams=bodyParams;
+exports.urlParmas=urlParmas;
