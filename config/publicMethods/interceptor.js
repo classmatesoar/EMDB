@@ -1,6 +1,7 @@
 const {getCookie} = require('./index.js')
 const {responseJson} =require('./response.js')
 const check=(req,res,next)=>{
+    console.log(req)
     let path=req.path;
     if(path!='/login_in' && path!='/login_up'){
         let token=getCookie(req,'token');
