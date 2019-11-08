@@ -1,12 +1,12 @@
-const mongoose =require("mongoose")
-const {m_user} = require('./config/mongooseModel/user.js')
-const DB_URL='mongodb://104.224.153.165:52954'
-mongoose.connect(DB_URL)
-mongoose.connection.on('connected',function(){
-    console.log('mongo is start')
-})
+// const mongoose =require("mongoose")
+// const {m_user} = require('./config/mongooseModel/user.js')
+// const DB_URL='mongodb://104.224.153.165:52954'
+// mongoose.connect(DB_URL)
+// mongoose.connection.on('connected',function(){
+//     console.log('mongo is start')
+// })
 
-const User= mongoose.model('user',new mongoose.Schema(m_user))
+// const User= mongoose.model('user',new mongoose.Schema(m_user))
 
 /* ------------------------------------------------------------------------- */
 
@@ -82,38 +82,38 @@ app.post('/login_in', function (req, res) {
     res.send('3232')
  })
 
-app.get('/set',function(req,res){
+// app.get('/set',function(req,res){
 
-    User.create({
-    user:'soar',
-    age:new Date().getTime()
-},function(err,doc){
-    if(err){
-        console.log(err)
-    }else
-    console.log(doc);
-    res.json({status:'ok'})
-})
+//     User.create({
+//     user:'soar',
+//     age:new Date().getTime()
+// },function(err,doc){
+//     if(err){
+//         console.log(err)
+//     }else
+//     console.log(doc);
+//     res.json({status:'ok'})
+// })
 
-})
-app.get('/get',function(req,res){
-    User.find({},function(err,doc){
-        if(!err){
-            res.json(doc)
-        }else{
-            res.send(err)
-        }
-    })
+// })
+// app.get('/get',function(req,res){
+//     User.find({},function(err,doc){
+//         if(!err){
+//             res.json(doc)
+//         }else{
+//             res.send(err)
+//         }
+//     })
     
-})
-app.get('/clear',function(req,res){
-    User.remove({},function(err,doc){
-        if(!err){
-            res.json(doc)
-        }else{
-            res.send(err)
-        }
-    })
-})
+// })
+// app.get('/clear',function(req,res){
+//     User.remove({},function(err,doc){
+//         if(!err){
+//             res.json(doc)
+//         }else{
+//             res.send(err)
+//         }
+//     })
+// })
  
 
