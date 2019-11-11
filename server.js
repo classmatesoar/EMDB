@@ -48,6 +48,11 @@ app.use(cookieParser());
 //监听
 const server = app.listen(80,function(){
     console.log('server is start')
+    require('./config')
+
+},(...arg)=>{
+    console.log('端口被占用')
+    console.log(arg);
 });
 
 /* -------------------------------------------------------------------------- */
@@ -81,6 +86,14 @@ app.post('/login_in', function (req, res) {
     // res.sendFile(__dirname + '/package.json');
     res.send('3232')
  })
+
+
+
+ //为vue路由history路由设置
+ app.get('*',(req,res)=>{
+    res.sendFile(__dirname+'/www_root/index.html')
+})
+
 
 // app.get('/set',function(req,res){
 

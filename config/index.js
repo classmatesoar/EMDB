@@ -4,7 +4,7 @@ let nodeUuid = require("node-uuid"); //引入创建唯一id模块
 let socketServer = ws.Server;
 
 let wss = new socketServer({ port: 8090 }); //创建websocketServer实例监听8090端口
-
+console.log(`ws启动`)
 let clients = [],
 luckClient=[];
 
